@@ -502,7 +502,12 @@ class PendaftaranController extends Controller
     {
         $nomor      = NomorAntrian::where('poliklinik_id', $request->poliklinik_id)->whereDate('created_at', date('Y-m-d'))->max('nomor_antrian');
         $antrian    = NomorAntrian::where('id', $id)->first();
-        $antrian->update(['dokter_id' => $request->dokter_id,'perusahaan_asuransi_id' => $request->perusahaan_asuransi_id, 'nomor_antrian' => ($nomor + 1),'poliklinik_id' => $request->poliklinik_id]);
+        if ($antrian->poliklinik_id == $request->poliklinik_id) {
+            $antrian->update(['dokter_id' => $request->dokter_id,'perusahaan_asuransi_id' => $request->perusahaan_asuransi_id]);
+        } else {
+            $antrian->update(['dokter_id' => $request->dokter_id,'perusahaan_asuransi_id' => $request->perusahaan_asuransi_id, 'nomor_antrian' => ($nomor + 1),'poliklinik_id' => $request->poliklinik_id]);
+        }
+
         return redirect('/pendaftaran/' . $id . '/cetak');
     }
 

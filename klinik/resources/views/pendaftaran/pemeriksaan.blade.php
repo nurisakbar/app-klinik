@@ -45,7 +45,7 @@
                     </tr>
                     <tr>
                       <td>Jenis Layanan</td>
-                      <td>Pasien {{ $nomorAntrian->pendaftaran->perusahaanAsuransi->nama_perusahaan }}</td>
+                      <td>Pasien {{ $nomorAntrian->perusahaanAsuransi->nama_perusahaan }}</td>
                     </tr>
                   </table>
 

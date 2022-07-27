@@ -101,13 +101,18 @@ class PermintaanBarangInternalController extends Controller
         foreach ($permintaanBarang->detail as $row) {
             $distribusiStock = DistribusiStock::where('unit_stock_id', $permintaanBarang->unitTujuan->id)
                 ->where('barang_id', $row->barang_id)->first();
-            if (!$distribusiStock) {
-                $distribusiStock = new DistribusiStock();
-            }
-            $distribusiStock->unit_stock_id = $permintaanBarang->unitTujuan->id;
-            $distribusiStock->barang_id = $row->barang_id;
-            $distribusiStock->jumlah_stock += $row->jumlah_diterima;
-            $distribusiStock->save();
+
+            // kurangi jumlah pengirim
+            $pengirim = DistribusiStock::where('barang_id', $row->barang_id)
+            ->where('unit_stock_id', $permintaanBarang->unit_stock_id_sumber)
+            ->first();
+            $pengirim->update(['jumlah_stock' => $pengirim->jumlah_stock - $row->jumlah_diterima]);
+
+            // tambah jumlah penerima
+            $penerima = DistribusiStock::where('barang_id', $row->barang_id)
+            ->where('unit_stock_id', $permintaanBarang->unit_stock_id_tujuan)
+            ->first();
+            $penerima->update(['jumlah_stock' => $penerima->jumlah_stock - $row->jumlah_diterima]);
         }
         $permintaanBarang->status = 'Selesai';
         $permintaanBarang->save();

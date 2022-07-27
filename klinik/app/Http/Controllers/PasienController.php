@@ -147,6 +147,8 @@ class PasienController extends Controller
             $data['foto']        = $fileName;
         }
 
+        $data['nomor_rekam_medis'] =    generateKodeRekamMedis();
+
         $wilayah_administratif = \DB::table('view_wilayah_administratif_indonesia')
             ->where('village_id', $request->wilayah_administratif)
             ->first();
