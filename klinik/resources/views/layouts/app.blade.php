@@ -136,12 +136,7 @@
                       
                             $akutansi = [
                               ['icon' => 'fa fa-user', 'link' => '/home', 'label' => 'Dashboard'],
-                              ['icon' => 'fa fa-bars', 'link' => '#', 'label' => 'Akutansi', 'submenu' => [
-                                ['icon' => 'fa fa-user', 'link' => '/akun', 'label' => 'Akun'],
-                                ['icon' => 'fa fa-user', 'link' => '/jurnal', 'label' => 'Jurnal Umum'],
-                                ['icon' => 'fa fa-book', 'link' => '/buku-besar', 'label' => 'Buku Besar'],
-                                ['icon' => 'fa fa-user', 'link' => '/neraca-saldo', 'label' => 'Neraca Saldo'],
-                              ]],
+                              ['icon' => 'fa fa-user', 'link' => env("LINK_SIAK", "#"), 'label' => 'Akutansi','target'=>'new'],
                               ['icon' => 'fa fa-paste', 'link' => '/akun', 'label' => 'Laporan'],
                               ['icon' => 'fa fa-user', 'link' => '/purchase-order', 'label' => 'Purchase Order'],
                               ['icon' => 'fa fa-paste', 'link' => '/laporan-fee-tindakan', 'label' => 'Laporan Fee Tindakan'],
@@ -235,7 +230,7 @@
                                     </ul>
                                 </li>
                                 @else
-                                    <li><a href="{{$menu['link']}}"><i class="{{$menu['icon']}}"></i> <span>{{strtoupper($menu['label'])}}</span></a></li>
+                                    <li><a target="{{$menu['target'] ?? ''}}" href="{{$menu['link']}}"><i class="{{$menu['icon']}}"></i> <span>{{strtoupper($menu['label'])}}</span></a></li>
                                 @endif
                             @endforeach
 
