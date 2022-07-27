@@ -1,0 +1,28 @@
+.custom-table > thead:first-child > tr:first-child > th{
+    background-color: white !important;
+    color: #428BCA !important;
+    border-color: #357EBD;
+    border-top: 2px solid #357EBD;
+    text-align: center;
+}
+
+.custom-table > tfoot > tr > th{
+	text-align: center;
+}
+
+.custom-table > tbody > tr > td{
+	text-align: center;
+}
+
+.custom-table > tbody > tr > td{
+	text-align: center;
+}
+
+.table-condensed-custom > tbody > tr > td, .table-condensed-custom > tbody > tr > th, .table-condensed-custom > tfoot > tr > td, .table-condensed-custom > tfoot > tr > th, .table-condensed-custom > thead > tr > td, .table-condensed-custom > thead > tr > th {
+    padding: 0px;
+}
+
+.box-header > .box-tools .dropdown-menu > li > a:hover {
+    color: #428BCA !important;
+}
+
