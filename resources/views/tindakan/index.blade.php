@@ -25,6 +25,8 @@
                      <button type="button" class="btn btn-primary btn-social btn-flat" data-toggle="modal" data-target="#myModal">
                       <i class="fa fa-file-excel-o" aria-hidden="true"></i> Import Tindakan
                     </button>
+                    <a href="{{route('tindakan.excel')}}" class="btn btn-info btn-social btn-flat"><i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                      Export Excel</a>
                   <hr>
                 
                 @include('alert')
@@ -38,8 +40,8 @@
                         <th>Tarif Umum</th>
                         <th>Tarif BPJS</th>
                         <th>Tarif Perusahaan</th>
-                        <th>Poliklinik</th>
                         <th>Pelayanan</th>
+                        <th>Poliklinik</th>
                         <th width="100">#</th>
                       </tr>
                   </thead>

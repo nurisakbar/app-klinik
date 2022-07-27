@@ -67,7 +67,12 @@ class AjaxController extends Controller
     public function simpanAnamnesa(Request $request)
     {
         $nomorAntrian = NomorAntrian::find($request->nomor_antrian_id);
-        $nomorAntrian->update(['anamnesa' => $request->anamnesa]);
+
+        // hitung durasi pelayanan
+        $waktu_daftar           = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $nomorAntrian->created_at);
+        $waktu_input_anamnesa   = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', now());
+        $durasi_pelayanan       = $waktu_daftar->diffInMinutes($waktu_input_anamnesa);
+        $nomorAntrian->update(['anamnesa' => $request->anamnesa,'durasi_pelayanan' => $durasi_pelayanan]);
         if ($nomorAntrian) {
             return response()->json($nomorAntrian);
         }

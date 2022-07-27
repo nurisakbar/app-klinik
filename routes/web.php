@@ -150,6 +150,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('satuan', 'SatuanController');
     Route::resource('harilibur', 'HariLiburController');
     Route::post('tindakan/import', 'TindakanController@import');
+    Route::get('tindakan/excel', 'TindakanController@excel')->name('tindakan.excel');
     Route::resource('tindakan', 'TindakanController');
     Route::resource('indikator-pemeriksaan-lab', 'IndikatorPemeriksaanLabController');
     Route::resource('hasil-pemeriksaan-lab', 'HasilPemeriksaanLabController');

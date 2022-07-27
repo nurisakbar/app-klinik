@@ -12,6 +12,8 @@ use App\Models\Barang;
 use App\Http\Requests\TindakanStoreRequest;
 use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 use App\Models\Satuan;
+use App\Exports\TindakanExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TindakanController extends Controller
 {
@@ -355,5 +357,11 @@ class TindakanController extends Controller
         }
         unlink($filePath);
         return redirect('tindakan')->with('message', 'Import Tindakan sedang berlangsung');
+    }
+
+
+    public function excel(Request $request)
+    {
+        return Excel::download(new TindakanExport(), 'Data-master-tindakan' . date('Y-m-d-H-i-s') . '.xlsx');
     }
 }
